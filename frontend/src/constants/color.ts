@@ -1,0 +1,1 @@
+export const COLOR_PALETTE = ['#01b4c6', '#97ce4c', '#fff874', '#bee5fd', '#f675da']
