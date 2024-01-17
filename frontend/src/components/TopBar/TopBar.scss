@@ -1,0 +1,50 @@
+.TopBar {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+    border-bottom: 1px solid #000;
+    max-width: 1140px;
+
+    span {
+        text-transform: capitalize;
+    }
+
+    .buttons {
+        display: flex;
+    }
+
+    button {
+        background: none;
+        text-transform: capitalize;
+        border: none;
+        outline: none;
+        padding: 10px 12px;
+        display: flex;
+        position: relative;
+
+        &:hover,
+        &:focus {
+            border: none;
+            outline: none;
+        }
+
+        &:hover {
+            text-shadow: 0 0 0.5em rgb(174, 205, 65), 0 0 0.5em rgb(174, 205, 65), 0 0 0.5em rgb(174, 205, 65);
+
+        }
+
+        &.selected {
+            &:after {
+                content: "";
+                display: block;
+                height: 3px;
+                width: 30px;
+                background: #55f7b8;
+                position: absolute;
+                bottom: 0;
+                left: calc(50% - 15px);
+            }
+        }
+    }
+}

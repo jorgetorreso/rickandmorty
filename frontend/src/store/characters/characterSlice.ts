@@ -1,25 +1,13 @@
-// charactersSlice.ts
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "../store";
-
-export interface ICharacter {
-  id: number;
-  name: string;
-  status: string;
-  species: string;
-}
+import { ICharacter, IFilters } from "@/interfaces/characters";
 
 interface ICharactersState {
   data: ICharacter[];
   status: "idle" | "pending" | "succeeded" | "failed";
   error: string | null;
-  filters: {
-    name?: string;
-    status?: string;
-    species?: string;
-    // ... otros campos de filtro
-  };
+  filters: IFilters;
 }
 
 const initialState: ICharactersState = {
@@ -33,7 +21,7 @@ export const fetchCharacters = createAsyncThunk(
   "characters/fetch",
   async (filters: ICharactersState["filters"]) => {
     const response = await axios.get(
-      "https://rickandmortyapi.com/api/character",
+      "http://localhost:3000/find-all-posts",
       { params: filters }
     );
     return response.data.results;

@@ -1,0 +1,54 @@
+.SimpleCard {
+    width: 100%;
+
+    @media (min-width: 768px) {
+        width: calc(50% - 5px);
+        max-width: 450px;
+    }
+
+    .ribbon {
+        top: auto;
+        bottom: 15px;
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    &__wrapper {
+        display: flex;
+        height: 190px;
+        padding: 1.5em 1.5em 1.5em 1.5em;
+        background-color: #ffffff;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+        transition: box-shadow 0.25s;
+
+        &:hover {
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 4px 8px 0 rgba(0, 0, 0, 0.05);
+        }
+    }
+
+    &__cover {
+        width: 50%;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        img {
+            width: 100%;
+            height: auto;
+            margin-top: -60px;
+            box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .2), 0 1px 8px 0 rgba(0, 0, 0, .12)
+        }
+    }
+
+    &__info {
+        display: flex;
+        width: 50%;
+        flex-direction: column;
+        text-align: left;
+        padding: 0 16px;
+        color: #024a44;
+
+        h2 {
+            font-size: 18px;
+        }
+    }
+}
