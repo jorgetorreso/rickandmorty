@@ -20,11 +20,12 @@ const initialState: ICharactersState = {
 export const fetchCharacters = createAsyncThunk(
   "characters/fetch",
   async (filters: ICharactersState["filters"]) => {
+    const userId = localStorage.getItem('userId')?.replaceAll('"', '');
     const response = await axios.get(
-      "http://localhost:3000/find-all-posts",
-      { params: filters }
+      "http://localhost:3000/find-all-characters",
+      { params: { ...filters, userId } }
     );
-    return response.data.results;
+    return response.data.data;
   }
 );
 

@@ -1,9 +1,15 @@
-import { Favorite } from "@prisma/client";
-import { UserEntity } from "./User";
+export class CharacterEntity {
+    type: string;
+    gender: string;
+    image: string;
+    id: number;
+    name: string;
+    status: string;
+    species: string;
+    isFavorite: boolean;
 
-export class CharacterEntity implements Favorite {
-  id: string;
-  userId: string;
-  characterId: string;
-  user: UserEntity; // Incluir la entidad de usuario asociada al personaje
+    // Método para agregar el flag de favorito
+    setFavorite(isFavorite: boolean) {
+        this.isFavorite = isFavorite;
+    }
 }

@@ -36,8 +36,6 @@ const TopBar: React.FC<ITopBarProps> = ({ filters, onSelectType }) => {
 
     const currentFilter = !isEmptyValue(filters) ? Object.entries(filters)[0] : null;
 
-    console.log(filters)
-    console.log(Object.entries(filters)[0])
     return (
         <div className="TopBar">
             <span>

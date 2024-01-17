@@ -1,6 +1,7 @@
 import React from "react";
 import { ICharacter } from "@/interfaces/characters";
 import './SimpleCard.scss';
+import Favorite from "../Favorite";
 
 interface ISimpleCardProps {
     item: ICharacter;
@@ -21,6 +22,7 @@ const SimpleCard: React.FC<ISimpleCardProps> = ({ item }) => {
                     <img src={item.image} alt={item.name} />
                 </div>
                 <div className="SimpleCard__info">
+                    <Favorite isFavorite={item.isFavorite} onToggleFavorite={() => { }} />
                     <h2>{item.name}</h2>
                     <p>
                         <b>Species:</b> {item.species}

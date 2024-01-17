@@ -1,8 +1,8 @@
 import { request, response, Router } from "express";
-import { createPostController, createUserController } from "./modules/create";
+import { createFavoriteController, createPostController, createUserController } from "./modules/create";
 import { deletePostController, deleteUserController } from "./modules/delete";
 import { editPostController, editUserController } from "./modules/edit";
-import { findAllPostsController, findAllUsersController } from "./modules/read/find-all";
+import { findAllCharactersController, findAllPostsController, findAllUsersController } from "./modules/read/find-all";
 
 const router = Router();
 
@@ -39,5 +39,22 @@ router.put("/edit/user/:id", async (request, response) => {
 router.delete("/delete/user/:id", async (request, response) => {
   return deleteUserController.handle(request, response);
 });
+
+// Favorite 
+
+router.post("/add-favorite", async (request, response) => {
+  return createFavoriteController.handle(request, response);
+});
+
+// router.post("/remove-favorite", async (request, response) => {
+//   return deleteFavoriteController.handle(request, response);
+// });
+
+// Character
+
+router.get("/find-all-characters", async (request, response) => {
+  return findAllCharactersController.handle(request, response);
+});
+
 
 export { router };

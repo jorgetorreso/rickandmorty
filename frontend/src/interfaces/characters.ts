@@ -1,4 +1,5 @@
 export interface ICharacter {
+  isFavorite: boolean;
   type: string;
   gender: string;
   image: string;

@@ -19,7 +19,11 @@ function App() {
   const data = useSelector(selectCharacters);
   const user = useSelector(selectUser);
 
-  const sliderData = data.filter((item) => item.status === 'Alive') || [];
+  const itemList = data || [];
+
+  const sliderData = itemList.filter((item) => item.status === 'Alive');
+
+ 
 
   const resetFilters = () => {
     setFilter({});
@@ -53,7 +57,7 @@ function App() {
       <CustomSlider items={sliderData} />
       <TopBar filters={filter} onSelectType={onFilterChange} />
       <main>
-        {data.length > 0 && data.map((item) =>
+        {itemList.length > 0 && itemList.map((item) =>
           <SimpleCard key={item.id} item={item} />
         )}
       </main>
