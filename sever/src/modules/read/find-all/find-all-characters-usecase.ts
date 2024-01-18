@@ -10,8 +10,6 @@ export class FindAllCharactersUseCase {
         // Hacer la llamada a la API externa para obtener todos los personajes con el filtro
         const characters = await this.rickAndMortyApi.getAllCharacters(filter);
 
-        console.log(userId);
-
         // Lógica para determinar si cada personaje es favorito
         const userFavorites = await this.favoriteRepository.findByUserId(userId);
 
