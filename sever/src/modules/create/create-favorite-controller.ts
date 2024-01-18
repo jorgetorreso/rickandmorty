@@ -6,7 +6,6 @@ export class CreateFavoriteController {
 
   async handle(request: Request, response: Response): Promise<Response> {
     const { userId, characterId } = request.body;
-    console.log(request.body)
     try {
       const character = await this.createFavoriteUseCase.execute({ userId, characterId });
       return response

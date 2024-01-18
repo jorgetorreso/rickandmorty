@@ -7,23 +7,21 @@ import TopBar from './components/TopBar'
 import { IFilterOption, IFilters } from './interfaces/characters'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from '@/store/hooks'
-import { fetchCharacters, selectCharacters } from '@/store/characters/characterSlice'
+import { fetchAddFavoriteCharacter, fetchCharacters, fetchRemoveFavoriteCharacter, selectCharacters, selectFavoriteStatus } from '@/store/characters/characterSlice'
 import { useLocalStorage } from 'usehooks-ts'
-import { fetchUser, selectUser } from './store/auth/authSlice'
-import { isEmptyValue } from './utils/helper'
+import { selectUser } from './store/auth/authSlice';
 
 function App() {
   const [userId, setUserId] = useLocalStorage('userId', '')
   const [filter, setFilter] = useState<IFilters>({})
   const dispatch = useAppDispatch();
   const data = useSelector(selectCharacters);
+  const favoriteStatus = useSelector(selectFavoriteStatus);
   const user = useSelector(selectUser);
 
   const itemList = data || [];
 
   const sliderData = itemList.filter((item) => item.status === 'Alive');
-
- 
 
   const resetFilters = () => {
     setFilter({});
@@ -36,9 +34,18 @@ function App() {
     setFilter({ [option.type]: option.value });
   };
 
-  useEffect(() => {
-    if (isEmptyValue(userId)) dispatch(fetchUser());
-  }, []);
+  const handleToggleFavorite = (
+    id: string,
+    isFavorite: boolean,
+  ) => {
+
+    if (favoriteStatus === "pending") return false;
+    if (isFavorite) {
+      dispatch(fetchAddFavoriteCharacter(id))
+    } else {
+      dispatch(fetchRemoveFavoriteCharacter(id))
+    }
+  };
 
   useEffect(() => {
     if (user?.id) setUserId(user.id)
@@ -49,6 +56,12 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
 
+  useEffect(() => {
+    if (favoriteStatus === "succeeded") dispatch(fetchCharacters(filter));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [favoriteStatus]);
+
+
   return (
     <>
       <header className='Header'>
@@ -58,7 +71,7 @@ function App() {
       <TopBar filters={filter} onSelectType={onFilterChange} />
       <main>
         {itemList.length > 0 && itemList.map((item) =>
-          <SimpleCard key={item.id} item={item} />
+          <SimpleCard key={item.id} item={item} onToggleFavorite={handleToggleFavorite} />
         )}
       </main>
     </>

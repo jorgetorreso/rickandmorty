@@ -1,5 +1,5 @@
 .Favorite {
-    border: 2px solid red;
+    border: 2px solid #b1b1b1;
     width: 35px;
     height: 35px;
     display: flex;
@@ -7,6 +7,16 @@
     align-items: center;
     border-radius: 25px;
     position: absolute;
-    right: 20px;
+    right: 10px;
     top: 10px;
+    cursor: pointer;
+
+    span {
+        user-select: none;
+    }
+
+
+    &.is-favorite {
+        border: 2px solid red;
+    }
 }

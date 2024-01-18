@@ -1,21 +1,26 @@
-import { PrismaRepository } from "../../repositories/implementations/PrismaRepository";
+import { FavoriteRepository } from "../../repositories/implementations/FavoriteRepository";
 import { UserRepository } from "../../repositories/implementations/UserRepository";
-import { DeletePostController } from "./delete-post-controller";
-import { DeletePostUseCase } from "./delete-post-usecase";
+import { DeleteFavoriteController } from "./delete-favorite-controller";
+import { DeleteFavoriteUseCase } from "./delete-favorite-usecase";
+import { DeleteUserController } from "./delete-user-controller";
+import { DeleteUserUseCase } from "./delete-user-usecase";
 
-
-const prismaRepository = new PrismaRepository();
-
-const deletePostUseCase = new DeletePostUseCase(prismaRepository);
-
-const deletePostController = new DeletePostController(deletePostUseCase);
 
 // User
 
 const userRepository = new UserRepository();
 
-const deleteUserUseCase = new DeletePostUseCase(userRepository);
+const deleteUserUseCase = new DeleteUserUseCase(userRepository);
 
-const deleteUserController = new DeletePostController(deleteUserUseCase);
+const deleteUserController = new DeleteUserController(deleteUserUseCase);
 
-export { deletePostUseCase, deletePostController, deleteUserUseCase, deleteUserController }
+// Favorite
+
+const favoriteRepository = new FavoriteRepository();
+
+const deleteFavoriteUseCase = new DeleteFavoriteUseCase(favoriteRepository);
+
+const deleteFavoriteController = new DeleteFavoriteController(deleteFavoriteUseCase);
+
+export { deleteUserUseCase, deleteUserController, deleteFavoriteUseCase, deleteFavoriteController }
+

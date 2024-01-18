@@ -3,7 +3,11 @@ import { FavoriteEntity } from "../entities/Favorite";
 
 export interface IFavoriteRepository {
   create(data: ICreateFavoriteDTO): Promise<FavoriteEntity>;
+  findByUserIdAndCharacterId(
+    userId: string,
+    characterId: string
+  ): Promise<FavoriteEntity | null>;
   findByUserId(userId: string): Promise<FavoriteEntity[] | null>;
   findAll(): Promise<FavoriteEntity[]>;
-  delete(id: string): Promise<void>;
+  delete(userId: string, characterId: string): Promise<void>;
 }

@@ -6,12 +6,10 @@ interface IFavoriteProps {
     onToggleFavorite: (isFavorite: boolean) => void;
 }
 
-
 const Favorite: React.FC<IFavoriteProps> = ({ isFavorite, onToggleFavorite }) => {
-
     return (
-        <div className={`Favorite ${isFavorite ? 'is-favorite' : ''}`} onClick={() => onToggleFavorite(!isFavorite)}>
-            {isFavorite ? '❤️' : '🤍'}
+        <div title='add to favorite' className={`Favorite ${isFavorite ? 'is-favorite' : ''}`} onClick={() => onToggleFavorite(!isFavorite)}>
+            <span>{isFavorite ? '❤️' : '🤍'}</span>
         </div>
     );
 };
